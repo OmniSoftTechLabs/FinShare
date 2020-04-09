@@ -1,0 +1,75 @@
+﻿@model DAL.LeadGenerator
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Lead Generator</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.LeadGeneratorName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LeadGeneratorName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LeadGeneratorName)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactNo1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ContactNo1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ContactNo1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactNo2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ContactNo2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ContactNo2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.EmailID, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmailID)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Share, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Share, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Share)
+            </div>
+        </div>*@
+
+    
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="@Url.Action("Index", "LeadGenerator" )" id="backtolist" title="Click to go back to list">
+        <img src="@Url.Content("~/images/ico_previous.png")" alt="Go Back" />
+    </a>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

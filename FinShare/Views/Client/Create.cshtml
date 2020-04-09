@@ -1,0 +1,189 @@
+﻿@model DAL.Client
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Client</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+       
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClientName, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.ClientName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ClientName)
+            </div>
+
+            @Html.LabelFor(model => model.ClientAlieas, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.ClientAlieas, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ClientAlieas)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.State)
+            </div>
+
+            @Html.LabelFor(model => model.PinCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.PinCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PinCode)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactNo1, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.ContactNo1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ContactNo1)
+            </div>
+
+            @Html.LabelFor(model => model.ContactNo2, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.ContactNo2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ContactNo2)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PANNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.PANNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PANNo)
+            </div>
+
+            @Html.LabelFor(model => model.EmailID, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.EmailID, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmailID)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LG1, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.LG1, new SelectList(Model.LGlist, "LeadGeneratorID", "LeadGeneratorName"), "--Select--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LG1)
+            </div>
+
+            @Html.LabelFor(model => model.LG1Share, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.LG1Share, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LG1Share)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LG2, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.LG2, new SelectList(Model.LGlist, "LeadGeneratorID", "LeadGeneratorName"), "--Select--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LG2)
+            </div>
+
+            @Html.LabelFor(model => model.LG2Share, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.LG2Share, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LG2Share)
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+               
+                @Html.TextBoxFor(model => model.BirthDate, String.Format("{0:MMM/dd/yyyy}",Model.BirthDate),  new { @class = "form-control datepicker", @readonly = "true" } )
+                @Html.ValidationMessageFor(model => model.BirthDate)
+            </div>
+
+            @Html.LabelFor(model => model.Nominee, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Nominee, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nominee)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BankName, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.BankName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BankName)
+            </div>
+
+            @Html.LabelFor(model => model.AccountNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.AccountNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AccountNo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IFSC, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.IFSC, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IFSC)
+            </div>
+
+            @Html.LabelFor(model => model.MICR, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.MICR, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MICR)
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="@Url.Action("Index", "Client" )" id="backtolist" title="Click to go back to list">
+        <img src="@Url.Content("~/images/ico_previous.png")" alt="Go Back" />
+    </a>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () { // will trigger when the document is ready
+            $('.datepicker').datepicker({format:"M/dd/yyyy"}); //Initialise any date pickers
+        });
+    </script>
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

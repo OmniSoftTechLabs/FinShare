@@ -1,0 +1,66 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<DAL.ReportEn>
+
+@{
+    ViewBag.Title = "Report List";
+}
+
+<h2>Report List</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div>
+    <p>
+        @using (Html.BeginForm("Index", "Report", FormMethod.Get))
+        {
+            <b>Month</b>
+            @Html.TextBox("month")
+            <b>Year</b>
+            @Html.TextBox("year")
+            @*@Html.DropDownList("frommonth")*@
+            <input type="submit" value="Search" />
+        }
+    </p>
+        <table class="table" >
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Month)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().ReportName)
+                </th>
+                <th>Show Report</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Month)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReportName)
+                    </td>
+                    <td>
+
+                        <a href="@Url.Action("GetReport", "Report", new { Month = item.Month, Year = item.Year, ReportName = item.ReportName })" id="@item.Month" title="Click to download report" >
+                            <img src="@Url.Content("~/images/download_icon.png")" alt="Edit"  />
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = Request.QueryString["month"] })
+                 , new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true, DisplayPageCountAndCurrentLocation = true })
+    </div>
+}

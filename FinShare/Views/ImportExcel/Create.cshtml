@@ -1,0 +1,79 @@
+﻿@model DAL.ImportExcel
+
+@{
+    ViewBag.Title = "Import";
+}
+
+<h2>Import Excel</h2>
+
+@using (Html.BeginForm("Create", "ImportExcel", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group" style="color:green">
+            <h4>
+                @Html.DisplayFor(model => model.SuccessMsg, new { @class = "control-label col-md-2" })
+            </h4>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Month, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.Month, new List<SelectListItem>
+                { new SelectListItem { Text = "Jan", Value = "1" },
+                  new SelectListItem { Text = "Feb", Value = "2" },
+                  new SelectListItem { Text = "Mar", Value = "3" },
+                  new SelectListItem { Text = "Apr", Value = "4" },
+                  new SelectListItem { Text = "May", Value = "5" },
+                  new SelectListItem { Text = "Jun", Value = "6" },
+                  new SelectListItem { Text = "Jul", Value = "7" },
+                  new SelectListItem { Text = "Aug", Value = "8" },
+                  new SelectListItem { Text = "Sept", Value = "9" },
+                  new SelectListItem { Text = "Oct", Value = "10" },
+                  new SelectListItem { Text = "Nov", Value = "11" },
+                  new SelectListItem { Text = "Dec", Value = "12" },
+                }, "Select Month", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Month)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Year, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.Year, new SelectList(Model.years, "Id", "Name"), "Select Year", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Year)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AMCID, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.Hidden("AMCCode", null, new { @id = "hfAMCCode" })
+                @Html.DropDownListFor(model => model.AMCID, new SelectList(Model.AMCS, "AMCID", "AMCCode"), "Select AMC", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AMCID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Import" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $("body").on("change", "#AMCID", function () {
+            $("#hfAMCCode").val($(this).find("option:selected").text());
+        });
+    </script>
+}
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

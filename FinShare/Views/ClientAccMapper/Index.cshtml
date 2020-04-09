@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DAL.ClientAccMapper>
+
+@{
+    ViewBag.Title = "Account Numbers";
+    var objClient = Model.FirstOrDefault();
+}
+
+<h2>Account Numbers</h2>
+
+<p>
+    <a href="@Url.Action("Create", "ClientAccMapper", new { clientid = objClient.ClientID })" id="@objClient.ClientID" title="Click to Add Account Number">Create New</a>
+</p>
+
+<h4> Client Name : @Html.DisplayFor(modelItem => objClient.ClientName)</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountNumber)
+            </td>
+            <td>
+                @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                @*@Html.ActionLink( Url.Content("~/images/ico_delete.png"), "Delete", new { id=item.Uid })*@
+
+                <a href="@Url.Action("Delete", "ClientAccMapper", new { id = item.Uid, clientId = objClient.ClientID })" id="@item.Uid" title="Click to delete this record">
+                <img src="@Url.Content("~/images/ico_delete.png")" onclick="return confirm('Are you sure you want to delete this record?')" alt="Delete" />
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,82 @@
+﻿@model DAL.ImportExcel
+
+@{
+    ViewBag.Title = "ReImport";
+}
+
+<h2>Re Import</h2>
+
+
+@using (Html.BeginForm("ReImport", "ImportExcel", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <div class="form-group" style="color:blue">
+        <h4>
+            Re-Import will over write data for select month-year and AMC!!
+
+        </h4>
+    </div>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Month)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Month)
+                @Html.HiddenFor(model => model.Month)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Year)
+                @Html.HiddenFor(model => model.Year)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AMCCode)
+                @Html.Hidden("AMCCode", null, new { @id = "hfAMCCode" })
+                @Html.Hidden("AMCID", null, new { @id = "hfAMCID" })
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AMCCode)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.File)
+            </dt>
+            <dd>
+                <input type="file" id="dataFile" name="upload" value="" accept=".xls,.xlsx" />
+                @Html.ValidationMessageFor(model => model.File)
+            </dd>
+            <dt class="form-group">
+
+            </dt>
+            <dd>
+                @*<div class="col-md-offset-2 col-md-10">*@
+                <input type="submit" value="Import" class="btn btn-default" />
+                @*</div>*@
+            </dd>
+            <dt></dt>
+            <dd></dd>
+        </dl>
+    </div>
+    <p>
+        <a href="@Url.Action("Create", "ImportExcel",new { calltype = 0 } )" id="backtolist" title="Click to go back">
+            <img src="@Url.Content("~/images/ico_previous.png")" alt="Go Back" />
+        </a>
+    </p>
+
+}
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+

@@ -1,0 +1,90 @@
+﻿@model DAL.ImportExcel
+@{
+    ViewBag.Title = "Import";
+}
+
+<h2>Import</h2>
+
+@using (Html.BeginForm("Import", "ImportExcel", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <div>
+        <dl class="dl-horizontal">
+
+            <dt>
+                <br />
+                @Html.DisplayNameFor(model => model.Month)
+            </dt>
+
+            <dd>
+                <br />
+                @Html.DisplayFor(model => model.Month)
+                @Html.HiddenFor(model => model.Month)
+            </dd>
+
+            <dt>
+                <br />
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+
+            <dd>
+                <br />
+                @Html.DisplayFor(model => model.Year)
+                @Html.HiddenFor(model => model.Year)
+            </dd>
+
+            <dt>
+                <br />
+                @Html.DisplayNameFor(model => model.AMCCode)
+                @Html.Hidden("AMCCode", null, new { @id = "hfAMCCode" })
+                @Html.Hidden("AMCID", null, new { @id = "hfAMCID" })
+            </dt>
+
+            <dd>
+                <br />
+                @Html.DisplayFor(model => model.AMCCode)
+            </dd>
+            <dt>
+                <br />
+                @Html.DisplayNameFor(model => model.File)
+            </dt>
+            <dd>
+                <br />
+                <input type="file" id="dataFile" name="upload" value="" accept=".xls,.xlsx" />
+                @Html.ValidationMessageFor(model => model.File)
+            </dd>
+            <dt class="form-group">
+                <br />
+            </dt>
+            <dd>
+                <br />
+                @*<div class="col-md-offset-2 col-md-10">*@
+                <input type="submit" value="Import" class="btn btn-default" />
+                @*</div>*@
+            </dd>
+            <dt><br /></dt>
+            <dd><br /></dd>
+        </dl>
+    </div>
+    <p>
+        <a href="@Url.Action("Create", "ImportExcel",new { calltype = 0 } )" id="backtolist" title="Click to go back">
+            <img src="@Url.Content("~/images/ico_previous.png")" alt="Go Back" />
+        </a>
+    </p>
+
+}
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $("body").on("change", "#AMCID", function () {
+            $("#hfAMCCode").val($(this).find("option:selected").text());
+        });
+    </script>
+}
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

@@ -1,0 +1,168 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<DAL.Client>
+
+    @{
+        ViewBag.Title = "Client List";
+    }
+
+    <h2>Client List</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div>
+        <p>
+            @using(Html.BeginForm("Index", "Client", FormMethod.Get))
+            {
+            <b>Search Name </b>
+            @Html.TextBox("search")<input type="submit" value="Search" />
+            }
+        </p>
+        <table class="table" >
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().ClientName)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.ClientAlieas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.State)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PinCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PANNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BankName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AccountNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IFSC)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MICR)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.First().EmailID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().ContactNo1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().ContactNo2)
+                </th>
+                @*<th>
+                            @Html.DisplayNameFor(model => model.LG1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LG2)
+                        </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BirthDate)
+                    </th>
+                    <th>
+                            @Html.DisplayNameFor(model => model.Nominee)
+                        </th>*@
+
+                <th>Action</th>
+            </tr>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="5"> No Rows Found!</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    using (Html.BeginForm("Delete", "Client", new { item.ClientID }))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClientName)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.ClientAlieas)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.City)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.State)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PinCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PANNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BankName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccountNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IFSC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MICR)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactNo1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactNo2)
+                            </td>
+                            @*<td>
+                                        @Html.DisplayFor(modelItem => item.LG1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LG2)
+                                    </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BirthDate)
+                                </td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.Nominee)
+                                    </td>*@
+
+                            <td>
+                                
+                                <a href="@Url.Action("Edit", "Client", new { clientid = item.ClientID })" id="@item.ClientID" title="Click to edit this record" >
+                                    <img src="@Url.Content("~/images/ico_edit.png")" alt="Edit"/>
+                                </a>|
+                                <a href="@Url.Action("Delete", "Client", new { clientid = item.ClientID })" id="@item.ClientID" title="Click to delete this record">
+                                    <img src="@Url.Content("~/images/ico_delete.png")" onclick="return confirm('Are you sure you want to delete this record?')" alt="Delete" />
+                                </a>
+                                
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+            
+        </table>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = Request.QueryString["search"] })
+                 , new PagedListRenderOptions() { Display=PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal=true,DisplayPageCountAndCurrentLocation=true} )
+    </div>

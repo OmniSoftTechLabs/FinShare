@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsClient" targetNamespace="http://tempuri.org/dsClient.xsd" xmlns:mstns="http://tempuri.org/dsClient.xsd" xmlns="http://tempuri.org/dsClient.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsClient" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsClient" msprop:Generator_UserDSName="dsClient">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtClient" msprop:Generator_TableClassName="dtClientDataTable" msprop:Generator_TableVarName="tabledtClient" msprop:Generator_RowChangedName="dtClientRowChanged" msprop:Generator_TablePropName="dtClient" msprop:Generator_RowDeletingName="dtClientRowDeleting" msprop:Generator_RowChangingName="dtClientRowChanging" msprop:Generator_RowEvHandlerName="dtClientRowChangeEventHandler" msprop:Generator_RowDeletedName="dtClientRowDeleted" msprop:Generator_RowClassName="dtClientRow" msprop:Generator_UserTableName="dtClient" msprop:Generator_RowEvArgName="dtClientRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SrNo" msprop:Generator_ColumnVarNameInTable="columnSrNo" msprop:Generator_ColumnPropNameInRow="SrNo" msprop:Generator_ColumnPropNameInTable="SrNoColumn" msprop:Generator_UserColumnName="SrNo" type="xs:int" minOccurs="0" />
+              <xs:element name="ClientName" msprop:Generator_ColumnVarNameInTable="columnClientName" msprop:Generator_ColumnPropNameInRow="ClientName" msprop:Generator_ColumnPropNameInTable="ClientNameColumn" msprop:Generator_UserColumnName="ClientName" type="xs:string" minOccurs="0" />
+              <xs:element name="LG1share" msprop:Generator_ColumnVarNameInTable="columnLG1share" msprop:Generator_ColumnPropNameInRow="LG1share" msprop:Generator_ColumnPropNameInTable="LG1shareColumn" msprop:Generator_UserColumnName="LG1share" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LG2share" msprop:Generator_ColumnVarNameInTable="columnLG2share" msprop:Generator_ColumnPropNameInRow="LG2share" msprop:Generator_ColumnPropNameInTable="LG2shareColumn" msprop:Generator_UserColumnName="LG2share" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
