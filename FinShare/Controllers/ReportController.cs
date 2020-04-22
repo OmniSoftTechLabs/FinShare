@@ -32,6 +32,7 @@ namespace FinShare.Controllers
             
              
         }
+
         [HttpGet]
         public ActionResult GetReport(int Month,int Year, string ReportName )
         {
@@ -132,5 +133,13 @@ namespace FinShare.Controllers
             return View();
         }
 
-	}
+        [HttpGet]
+        public ActionResult Delete(int Month, int year)
+        {
+
+            ReportDAL objdal = new ReportDAL();
+            int i = objdal.DeleteReportDate(Month,year);
+            return RedirectToAction("Index");
+        }
+    }
 }

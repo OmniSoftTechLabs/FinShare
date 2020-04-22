@@ -50,7 +50,8 @@ namespace DAL
             }
             return enobjlst;
         }
-        public DataTable GetReportData(int Month,int Year)
+
+        public DataTable GetReportData(int Month, int Year)
         {
             DataTable dt = new DataTable();
             Database ds = default(Database);
@@ -80,6 +81,31 @@ namespace DAL
 
             }
             return dt;
+        }
+
+        public int DeleteReportDate(int Month, int year)
+        {
+            int i = new int();
+            DbCommand DbCommand = default(DbCommand);
+            try
+            {
+                Database ds = default(Database);
+                ds = DatabaseFactory.CreateDatabase(cnstr);
+                DbCommand = ds.GetStoredProcCommand("USP_Rpt_Monthwise_Delete");
+                ds.AddInParameter(DbCommand, "month", DbType.Int32, Month);
+                ds.AddInParameter(DbCommand, "year", DbType.Int32, year);
+                i = ds.ExecuteNonQuery(DbCommand);
+                DbCommand.Parameters.Clear();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DbCommand.Dispose();
+            }
+            return i;
         }
     }
 }
